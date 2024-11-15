@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, Idamageable
+public class Player : Singleton<Player>, Idamageable
 {
     [SerializeField] PlayerStateMachine stateMachine;
 
@@ -37,6 +37,8 @@ public class Player : MonoBehaviour, Idamageable
         }
     }
 
+    protected override bool Persistent => false;
+
     public delegate void HealtDelegate(int health, int maxHealth);
 
     private void OnEnable()
@@ -51,8 +53,10 @@ public class Player : MonoBehaviour, Idamageable
         InputManager.OnAttack -= Attack;
     }
 
-    private void Awake()
+
+    protected override void Awake()
     {
+        base.Awake();
         stateMachine.Initialize(this, stateMachine.Idle);
         currentHealt = maxHealth;
     }

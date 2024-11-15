@@ -22,6 +22,8 @@ public class PauseManager : MonoBehaviour
 
         string newPanel = isActive ? "Game Status" : "Pause";
 
+        int index = newPanel == "Pause" ? 0 : 1;
+
         bool canToggle = false;
 
         if (UIManager.Instance.CurrentIdentifier == "Game Status") canToggle = true;
@@ -30,5 +32,6 @@ public class PauseManager : MonoBehaviour
         if (!canToggle) return;
 
         UIManager.Instance.SwitchPanel(newPanel);
+        Time.timeScale = index;
     }
 }
