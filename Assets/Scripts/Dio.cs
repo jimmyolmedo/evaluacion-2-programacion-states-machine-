@@ -41,7 +41,7 @@ public class Dio : MonoBehaviour, Idamageable
 
     public void GetDamage(int damage)
     {
-
+        CurrenHealth -= damage;
     }
 
 }

@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
 
     public void impulseBullet(Vector3 direction)
     {
-        rb.velocity = direction * speed * Time.deltaTime;
+        rb.velocity = new Vector2(direction.x, direction.y) * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
